@@ -1,0 +1,149 @@
+*{
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+.imdbcontainer{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    margin: 1rem;
+    gap: 10px;
+
+}
+
+@media (max-width: 1010px){
+    .imdbcontainer{
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media (max-width: 760px){
+    .imdbcontainer{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 550px){
+    .imdbcontainer{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 350px){
+    .imdbcontainer{
+        grid-template-columns: 1fr;
+    }
+}
+
+.imdbcard{
+    cursor: pointer;
+}
+
+.imdbposterwrap{
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.imdbposter{
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 220px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.imdbposter-overlay{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 28%;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.1rem;
+    padding: 0.8rem 0.7rem 0.7rem;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.96) 0%,
+        rgba(0, 0, 0, 0.78) 30%,
+        rgba(0, 0, 0, 0.38) 52%,
+        rgba(0, 0, 0, 0.08) 78%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    border: none;
+    box-shadow: none;
+}
+
+.imdbposter-overlay p{
+    margin: 0.05rem 0;
+    line-height: 1.1;
+}
+
+.imdbmovie-name,
+.imdbmovie-date,
+.imdbposter-meta{
+    margin: 0;
+    color: white;
+    display: block;
+    line-height: 1.2;
+}
+
+.imdbmovie-name{
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.imdbposter-meta,
+.imdbmovie-date{
+    font-size: 0.72rem;
+    color: #d1d5db;
+}
+
+.imdbtitle{
+    color: white;
+    margin-top: 5rem;
+    margin-left: 1rem;
+}
+
+.imdbpara{
+    margin-left: 1rem;
+    color: #B4B7BC;
+}
+
+.imdbbtn{
+    display: flex;
+    justify-content: center;
+    margin: 4rem 0 4rem 0;
+}
+
+.btnratingone, .btnratingtwo{
+    padding: 10px;
+    border-radius: 50px 0px 0px 50px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: #293037;
+    color: #3c7fc7;
+    font-weight: lighter;
+}
+
+.btnratingtwo{
+    border-radius: 0px 50px 50px 0px;
+    padding: 10px 20px
+}
+
+.btnratingone:hover{
+    background-color: #3C7FC7;
+    color: white;
+    transition: all 0.3s ease;
+}
+.btnratingtwo:hover{
+    background-color: #3C7FC7;
+    color: white;
+    transition: all 0.3s ease;
+
+}

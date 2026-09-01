@@ -1,0 +1,243 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+}
+
+body{
+    margin: 0;
+    background: radial-gradient(
+    ellipse at top center,
+    #0D1B2E 0%,
+    #0A0F1A 50%,
+    #07090D 100%
+     );
+}
+
+
+
+.contain{
+    border: 1px solid black;
+    margin: 0;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    background: radial-gradient(
+    ellipse at top center,
+    #0D1B2E 0%,
+    #0A0F1A 50%,
+    #07090D 100%
+     );
+    color: white;
+    position: relative;
+}
+
+.netflix-text{
+    position: absolute;
+    left: 10px;
+}
+
+.menu{
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+@font-face {
+  font-family: 'NetflixFont';
+  src: url('/BebasNeue-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.netflix-text {
+    display: flex;
+    align-items: center;
+  font-family: 'NetflixFont', sans-serif;
+  color: #E50914; /* Netflix Red */
+  letter-spacing: 2px;
+  margin-right: auto;
+  font-size: 2rem;
+}
+
+.form{
+    display: flex;
+    justify-content: center;
+    margin-top: 4rem;
+}
+
+.name{
+    width: 25%;
+    border-radius: 5px 0px 0px 5px;
+    box-shadow: 0px 0px 8px grey;
+    
+}
+
+input{
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+
+.submit{
+    border-radius: 0px 5px 5px 0px;
+    box-shadow: 1px 0px 8px grey;
+    background: red;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.movie_poster{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.movie_card{
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 2 / 3;
+    border-radius: 10px;
+}
+
+.movie_details{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 2.5rem 0.75rem 0.75rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    color: white;
+    text-align: center;
+}
+
+.movie_title,
+.movie_release_date{
+    margin: 0;
+}
+
+.movie_title{
+    font-size: 0.9rem;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.movie_release_date{
+    margin-top: 0.35rem;
+    color: #d1d1d1;
+    font-size: 0.75rem;
+}
+
+.image_container{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 20px;
+    margin: 2rem 1rem 1rem 1rem;
+    margin-bottom: 2rem;
+}
+
+.moviehead{
+    margin: 1rem;
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: clamp(3rem, 4vw, 2rem);
+}
+
+@media (max-width: 1200px){
+    .image_container{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 670px){
+    .image_container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 400px){
+    .image_container{
+        grid-template-columns: 1fr;
+    }
+}
+
+.about{
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #12161C;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    /* margin-bottom: 5rem; */
+}
+
+.about, h1{
+    font-size: 20.8px;
+}
+
+.about, p{
+    font-size: 13px;
+}
+
+.head1{
+    margin-bottom: 0rem;
+}
+
+.para2{
+    margin-top: 0rem;
+}
+
+.gridding{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+    padding: 4rem 1rem ;
+    background-color: #0E1015;
+    border-top: 0.50px solid #343535;
+}
+
+@media (max-width: 800px){
+    .gridding{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 450px){
+    .gridding{
+        grid-template-columns: 1fr;
+    }
+}
+
+.one{
+    font-size: 11.05px;
+    color: #495C77;
+}
+
+.two{
+    font-size: 10.14px;
+    color: gray;
+}
+
+.three{
+    font-size: 10.14px;
+    font-weight: bold;
+}
+
+.four{
+    font-size: 11.44px;
+    cursor: pointer;
+}
+
+.four:hover{
+    color: #1C96F7;
+    transition: all 0.3s ease;
+}

@@ -1,0 +1,98 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+.tvmaintitle{
+    margin: 1rem;
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: clamp(1rem, 4vw, 2rem);
+    margin-top: clamp(3rem, 4vw, 2rem);
+}
+
+.tvserispostercontain{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 1rem;
+    margin: 2rem 1rem 1rem 1rem;
+    margin-bottom: 2rem;
+}
+
+.tvseriescard{
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 2 / 3;
+    border-radius: 10px;
+}
+
+.tvseriesposter{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.tvseriesdetails{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 4rem 0.75rem 0.75rem;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.92));
+    color: white;
+    text-align: center;
+}
+
+.tvseriestitle,
+.tvseriesreleasedate{
+    margin: 0;
+}
+
+.tvseriestitle{
+    font-size: 0.9rem;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.tvseriesreleasedate{
+    margin-top: 0.35rem;
+    color: #d1d1d1;
+    font-size: 0.75rem;
+}
+
+@media (max-width: 1010px){
+    .tvserispostercontain{
+        grid-template-columns: repeat(7, 1fr);
+    }
+}
+
+@media (max-width: 1000px){
+    .tvserispostercontain{
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media (max-width: 850px){
+    .tvserispostercontain{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 600px){
+    .tvserispostercontain{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 350px){
+    .tvserispostercontain{
+        grid-template-columns: 1fr;
+    }
+}
+
+.tv-search-dropdown{
+    transition: all 0.3s ease;
+}

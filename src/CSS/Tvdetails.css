@@ -1,0 +1,280 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+.contain{
+    padding: clamp(0.5rem, 1.5vw, 1rem);
+}
+
+.netflix-text{
+    font-size: clamp(1.25rem, 4vw, 2rem);
+}
+
+.menu{
+    gap: clamp(0.75rem, 4vw, 1.875rem);
+    font-size: clamp(0.75rem, 1.8vw, 1rem);
+}
+
+.menu p{
+    margin: 0;
+}
+
+.tvposter{
+    width: clamp(140px, 20vw, 280px);
+    height: auto;
+    border: 3px solid white;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+.tvpostercontain{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: clamp(1rem, 3vw, 2rem);
+    position: absolute;
+    right: clamp(1rem, 4vw, 4rem);
+    left: clamp(1rem, 4vw, 4rem);
+    bottom: clamp(1.5rem, 5vw, 3rem);
+    z-index: 1;
+}
+
+.tvcoverpostercontain{
+    position: relative;
+    width: 100%;
+    box-shadow: 0 28px 36px -18px rgba(0, 0, 0, 0.95);
+}
+
+.tvcoverpostercontain::after{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 55%;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.95));
+    content: "";
+    pointer-events: none;
+}
+
+.tvcover{
+    width: 100%;
+    height: 93vh;
+    display: block;
+    object-fit: cover;
+}
+
+.tvpostercontain h1{
+    margin: 0;
+    color: white;
+    font-size: clamp(1.25rem, 4vw, 3rem);
+    line-height: 1.08;
+    overflow-wrap: anywhere;
+}
+
+.tvimdb{
+    color: white;
+    margin: 0;
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 600px){
+    .tvpostercontain{
+        left: 1rem;
+        bottom: 1.5rem;
+        gap: 1rem;
+    }
+
+
+    .tvpostercontain h1{
+        font-size: clamp(1rem, 5vw, 1.75rem);
+    }
+
+}
+
+.tvdetailstext{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-bottom: 0;
+    min-width: 0;
+    max-width: 42rem;
+}
+
+.tvwatchbutton{
+    padding: clamp(0.5rem, 1.2vw, 0.625rem) clamp(0.75rem, 2vw, 1rem);
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    background-color: #3C7FC7;
+    color: white;
+    cursor: pointer;
+    width: min(12rem, 100%);
+    font-size: clamp(0.75rem, 1.6vw, 1rem);
+    line-height: 1.2;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.tvoverview{
+    margin: 0;
+    color: white;
+    font-size: clamp(0.75rem, 1.35vw, 1rem);
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+}
+
+.tvcast img{
+    width: clamp(5rem, 12vw, 8rem);
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    display: block;
+    border-radius: 60px;
+}
+
+.tvcast{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.casttext{
+    margin-left: 0.90rem;
+    padding-top: 5rem;
+}
+
+@media(max-width: 900px){
+    .tvcast{
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media(max-width: 800px){
+    .tvcast{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media(max-width: 600px){
+    .tvcast{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media(max-width: 400px){
+    .tvcast{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 250px){
+    .tvcast{
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 500px){
+    .menu{
+        display: none;
+    }
+}
+
+@media(max-width: 280px){
+    .tvposter{
+        display: none;
+    }
+}
+
+.similartvcontain{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 10px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 4rem;
+}
+
+.similartvcard{
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 2 / 3;
+    border-radius: 10px;
+}
+
+.similartvposter{
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.similartvdetails{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 2.25rem 0.75rem 0.75rem;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.89) 45%);
+    color: white;
+    text-align: center;
+    pointer-events: none;
+}
+
+.similartvtitle,
+.similartvreleasedate{
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+.similartvtitle{
+    font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.similartvreleasedate{
+    margin-top: 0.35rem;
+    color: #d1d1d1;
+    font-size: clamp(0.65rem, 1vw, 0.75rem);
+}
+
+.similartvtitlee{
+    margin-left: 1rem;
+    margin-top: 4rem;
+}
+
+@media (max-width: 1010px){
+    .similartvcontain{
+        grid-template-columns: repeat(6, 1fr);
+        transition: all 0.3s ease;
+    }
+}
+
+@media (max-width: 700px){
+    .similartvcontain{
+        grid-template-columns: repeat(4, 1fr);
+                transition: all 0.3s ease;
+
+    }
+}
+
+
+@media (max-width: 550px){
+    .similartvcontain{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 400px){
+    .similartvcontain{
+        grid-template-columns: 1fr;
+    }
+}

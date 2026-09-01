@@ -1,0 +1,279 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  min-height: 100%;
+}
+
+.movietrailer{
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.movietrailercontain{
+    margin: 4rem 1rem 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    width: calc(100% - 2rem);
+    max-width: 1440px;
+}
+
+.iframecontain{
+    flex: 1 1 68%;
+    min-width: 0;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.movietrailer{
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 12px;
+}
+
+.trailerposterdetails{
+    flex: 0 0 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    color: white;
+    align-self: flex-start;
+}
+
+.trailerposter{
+    width: 100%;
+    max-width: 170px;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+}
+
+.moviedetails{
+    border: none;
+    padding: 0;
+    color: white;
+    border-radius: 10px;
+    border: 1px solid white;
+    padding: 10px;
+    background-color: #1E242C;
+    border: none;
+    outline: none;
+}
+
+.moviedetails h1{
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.6rem, 2vw, 2.5rem);
+    line-height: 1.2;
+}
+
+.moviedetails p{
+    margin: 0.4rem 0;
+    color: #e5e5e5;
+    line-height: 1.6;
+    
+}
+
+.imdb{
+    border: 1px solid #F5C618;
+    max-width: 90px;
+    padding: 5px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    color: black;
+    background-color: #F5C618;
+    font-weight: bold;
+}
+
+@media (max-width : 1010px){
+    .movietrailercontain{
+        flex-direction: column;
+        align-items: stretch;
+        width: min(100%, calc(100% - 1rem));
+        margin: 4rem auto 0;
+    }
+
+    .iframecontain{
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .trailerposterdetails{
+        width: 100%;
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1rem;
+        text-align: left;
+        order: 2;
+        min-width: 0;
+    }
+
+    .trailerposter{
+        max-width: 200px;
+        order: 1;
+        width: 100%;
+        flex-shrink: 0;
+        align-self: flex-start;
+    }
+
+    .moviedetails{
+        margin-left: 0;
+        width: auto;
+        order: 2;
+        flex: 1 1 auto;
+        min-width: 0;
+        border: 1px solid white;
+        padding: 10px;
+        border: none;
+        outline: none;
+    }
+
+    .moviedetails h1,
+    .moviedetails p,
+    .imdb{
+        text-align: left;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .imdb{
+        color: black;
+    }
+}
+
+@media (max-width: 520px){
+    .movietrailercontain{
+        width: min(100%, calc(100% - 1rem));
+        margin: 2rem auto 0;
+    }
+
+    .trailerposterdetails{
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .trailerposter{
+        max-width: 220px;
+        width: 100%;
+    }
+
+    .moviedetails{
+        width: 100%;
+    }
+
+    .moviedetails h1{
+        font-size: 1.3rem;
+    }
+
+    .moviedetails p{
+        font-size: 0.82rem;
+        line-height: 1.5;
+    }
+}
+
+.simicontain {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 15px;
+    margin-left: 0.50rem;
+    margin-right: 0.50rem;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+}
+
+.simiposterwrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #000;
+    cursor: pointer;
+}
+
+.simiposter{
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 10px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.simiposteroverlay {
+    position: absolute;
+    inset: 0 0 0 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.92) 0%, rgba(0, 0, 0, 0.68) 28%, rgba(0, 0, 0, 0.22) 55%, rgba(0, 0, 0, 0.04) 100%);
+    padding: 0.9rem 0.7rem 0.7rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+    pointer-events: none;
+}
+
+.simiposteroverlay h4,
+.simiposteroverlay p {
+    margin: 0;
+    color: white;
+}
+
+.simiposteroverlay h4 {
+    font-size: 0.9rem;
+    line-height: 1.25;
+    font-weight: 700;
+    word-break: break-word;
+}
+
+.simiposteroverlay p {
+    margin-top: 0.25rem;
+    font-size: 0.72rem;
+    color: #d5d5d5;
+}
+
+@media (max-width: 1000px){
+    .simicontain{
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media (max-width: 750px){
+    .simicontain{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 520px){
+    .simicontain{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 300px){
+    .simicontain{
+        grid-template-columns: 1fr;
+    }
+}
+
+.alike{
+    color: white;
+    margin-left: 0.50rem;
+}
