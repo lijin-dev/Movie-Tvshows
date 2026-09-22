@@ -1,78 +1,24 @@
-import { useEffect, useState } from "react"
-import { getMovieActors, getMovieById, getMovieTrailer, getSimilarMovies, getTvCast } from "../Services/api";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import "../CSS/Trailer.css"
+import { useEffect, useState } from "react";
+import { data, Link, useNavigate } from "react-router-dom";
+import { getUk } from "../Services/api";
+import '../CSS/Unitedkingdom.css';
 
-function Trailer(){
+function Unitedkingdom(){
 
-    const[trailer, setTrailer] = useState(null);
+    const[uk, setUk] = useState([]);
+    const[page, setPage] = useState(1);
     const[loading, setLoading] = useState(true);
-    const[movie, setMovie] = useState(null);
-    const[actors, setActors] = useState(null);
-    const[similar, setSimilar] = useState([]);
     const navigate = useNavigate();
-    const {idmt} =useParams()
 
 
-    
-
-    const appfour = async () =>{
+    const app = async() =>{
         try{
-            const getSimilar = await getSimilarMovies(idmt);
-            setSimilar(getSimilar);
+            setLoading(true)
+            const getKU = await getUk(page);
+            setUk(getKU);
         }catch(err){
-            console.log(err);
+            console.log("An error Occured", err);
             
-        }finally{
-            setLoading(false);
-        }
-    }
-
-    useEffect(() =>{
-        appfour();
-    }, [idmt])
-
-    const appthree = async () =>{
-        try{
-            const getCast = await getMovieActors(idmt);
-            setActors(getCast)
-        }catch(err){
-            console.log(err);
-            
-        }finally{
-            setLoading(false);
-        }
-    }
-
-    useEffect(() =>{
-        appthree();
-    }, [idmt])
-
-    const apptwo = async () =>{
-        try{
-            const getMovie = await getMovieById(idmt);
-            setMovie(getMovie);
-        }catch(err){
-            console.log(err);
-        }
-    }
-
-    useEffect(() =>{
-        apptwo();
-    }, [idmt])
-
-    const app = async () =>{
-
-        setLoading(true);
-
-        try{
-            const trailers = await getMovieTrailer(idmt);
-            const youtubeTrailer = trailers.find(
-                (video) => video.site === "YouTube" && video.type === "Trailer"
-            );
-            setTrailer(youtubeTrailer || null);
-        }catch(err){
-            console.log(err);
         }finally{
             setLoading(false);
         }
@@ -80,18 +26,15 @@ function Trailer(){
 
     useEffect(() =>{
         app();
-    }, [idmt])
+    },[page])
 
-    if (loading) {
-        return <div style={{ color: "white", padding: "2rem" }}>Loading trailer...</div>;
+    const handleClick = (data) =>{
+        if(data.type === "movie"){
+            navigate(`/moviedetails/${data.id}`)
+        }else{
+            navigate(`/tvdetails/${data.id}`)
+        }
     }
-
-    if (!movie) {
-        return <div style={{ color: "white", padding: "2rem" }}>Movie details not found.</div>;
-    }
-
-    const hasTrailer = Boolean(trailer && trailer.key);
-    const castNames = actors?.slice(0, 3).map((data) => data.name).join(", ") || "N/A";
 
     return(
         <>
@@ -112,53 +55,39 @@ function Trailer(){
             </div>
           </div>
         </div>
-        <div className="movietrailercontain">
-            <div className="iframecontain">
-                {hasTrailer ? (
-                    <iframe className="movietrailer"
-                        src={`https://www.youtube.com/embed/${trailer.key}`}
-                        title="Movie Trailer"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    ></iframe>
-                ) : (
-                    <div className="movietrailer" style={{ display: "flex", alignItems: "center", justifyContent: "center", background: "#111", color: "white" }}>
-                        Trailer unavailable
+         <div className="uktitle">
+            <h1>United Kingdom Movies & TV Shows Online Free</h1>
+            <p style={{color:"gray"}}>Watch movies and TV shows from United Kingdom free in HD on Lijinflix. 1,201 titles available — no signup or subscription. Discover the best of United Kingdom cinema and television, with English subtitles available for most titles.</p>
+         </div>
+         <div className="ukcontain">
+            {uk.map((data) =>{
+                const titleText = data.title || data.name;
+                const nameText = data.name && data.name !== titleText ? data.name : null;
+
+                return (
+                    <div className="ukcard" key={`${data.type}-${data.id}`} onClick={() => handleClick(data)}>
+                        <div className="ukposterwrap">
+                            <img className="ukposter" src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} alt={titleText || "Poster"} />
+                            <div className="ukoverlay">
+                                {titleText && <p className="ukmeta ukmeta-title">{titleText}</p>}
+                                {nameText && <p className="ukmeta">{nameText}</p>}
+                                {data.release_date && <p className="ukmeta">{data.release_date}</p>}
+                                {data.first_air_date && <p className="ukmeta">{data.first_air_date}</p>}
+                            </div>
+                        </div>
                     </div>
-                )}
+                );
+            })}
+         </div>
+         <div className="imdbbtn">
+            <div>
+                <button className="btnratingone" onClick={() =>setPage(page - 1)}>Previous</button>
             </div>
-                <div className="trailerposterdetails">
-                    <div>
-                <img className="trailerposter" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="" />
-                    </div>
-                <div className="moviedetails">
-                    <h1 style={{color:"white", fontWeight:"bold"}}>{movie.title}</h1>
-                    <div className="imdb">
-                    <p style={{color:"black"}}> IMDB :{movie.vote_average.toFixed(1)}</p>
-                    </div>
-                    <p style={{color:"grey"}}>{movie.overview || "No overview available."}</p>
-                    <p style={{marginTop:"1rem"}}> Country: {movie.production_countries?.map((country) => country.name).join(", ") || "N/A"}</p>
-                    <p>Genres: {movie.genres.slice(0, 1).map((genre) => genre.name)}</p>
-                    <p>Released: {movie.release_date}</p>
-                    <p>Productions: {movie.production_companies.map((companies) => companies.name).join(", ")}</p>
-                    <p>Cast: {castNames}</p>
-                </div>
-                </div>
-        </div>
-        
-            <h2 className="alike">You may also like</h2>
-        <div className="simicontain">
-        {similar.map((simi) =>(
-        <div style={{cursor:"pointer"}} key={simi.id} className="simiposterwrap" onClick={() => navigate(`/moviedetails/${simi.id}`)}>
-            <img onClick={() => navigate(`/moviedetails/${simi.id}`)} className="simiposter" src={`https://image.tmdb.org/t/p/w500${simi.poster_path}`} alt="" />
-            <div className="simiposteroverlay">
-                <h4>{simi.title}</h4>
-                <p>{simi.release_date}</p>
+            <div>
+                <button className="btnratingtwo" onClick={() =>setPage(page + 1)}>Next</button>
             </div>
-        </div>
-        ))}
-        </div>
-        <div className="about">
+         </div>
+         <div className="about">
             <h1 className="head1">
                 Watch Free Movies & TV Shows Online in HD
             </h1>
@@ -248,4 +177,4 @@ function Trailer(){
     )
 }
 
-export default Trailer
+export default Unitedkingdom

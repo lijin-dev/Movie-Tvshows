@@ -1,0 +1,113 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+.thrillercontain{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    margin: 1rem;
+    gap: 10px;
+}
+
+.thrillercard{
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.thrillerposter{
+    width: 100%;
+    display: block;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.thrillercard:hover .thrillerposter{
+    transform: scale(1.08);
+}
+
+.thrillercard:hover{
+    transform: translateY(-10px);
+}
+
+.thrillerinfo{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1.75rem 0.5rem 0.5rem;
+    color: white;
+    text-align: center;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.95) 45%);
+}
+
+.thrillerinfo p{
+    margin: 0.15rem 0;
+    overflow: hidden;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.thrillertitle{
+    margin-left: 1rem;
+    margin-top: 6rem;
+    color: white;
+}
+
+@media(max-width: 1050px){
+    .thrillercontain{
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media(max-width: 820px){
+    .thrillercontain{
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media(max-width: 630px){
+    .thrillercontain{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media(max-width: 500px){
+    .thrillercontain{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media(max-width: 400px){
+    .thrillercontain{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 295px){
+    .thrillercontain{
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 900px){
+    .thrillertitle{
+        margin-top: 6rem;
+    }
+}
+
+@media (max-width: 730px){
+    .thrillertitle{
+        margin-top: 5rem;
+    }
+}
+
+@media (max-width: 500px){
+    .thrillertitle{
+        margin-top: 4.5rem;
+    }
+}

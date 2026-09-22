@@ -118,6 +118,21 @@
     line-height: 1.2;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+  
+  /* Fix 1: Tells the browser to optimize for transforms */
+  will-change: transform;
+  
+  /* Fix 2: Forces hardware acceleration */
+  transform: translateZ(0); 
+  
+  /* Fix 3: Blurs the edges slightly during scale to prevent jitter */
+  backface-visibility: hidden;
+}
+
+.tvwatchbutton:hover{
+    transform: scale(1.08);
+    box-shadow: 1px 2px 10px #3C7FC7;
 }
 
 .tvoverview{
@@ -205,6 +220,7 @@
     overflow: hidden;
     aspect-ratio: 2 / 3;
     border-radius: 10px;
+    transition: transform 0.3s ease;
 }
 
 .similartvposter{
@@ -214,6 +230,15 @@
     object-fit: cover;
     border-radius: 10px;
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.similartvcard:hover .similartvposter{
+    transform: scale(1.08);
+}
+
+.similartvcard:hover{
+    transform: translateY(-10px);
 }
 
 .similartvdetails{

@@ -1,0 +1,108 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+.comedycontain{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 10px;
+    margin: 1rem;
+}
+
+.comedycard{
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.comedyposter{
+    width: 100%;
+    display: block;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.comedycard:hover .comedyposter{
+    transform: scale(1.08);
+}
+
+.comedycard:hover{
+    transform: translateY(-10px);
+}
+
+.comedyinfo{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 2rem 0.5rem 0.5rem;
+    color: white;
+    text-align: center;
+    background: linear-gradient(to bottom, transparent, black 45%);
+    opacity: 0.9;
+}
+
+.comedyinfo p{
+    margin: 0.15rem 0;
+    overflow: hidden;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.comedytitle{
+    color: white;
+    margin-left: 1rem;
+    margin-top: 6rem;
+}
+
+@media (max-width: 1160px){
+    .comedycontain{
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media (max-width: 850px){
+    .comedycontain{
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (max-width: 660px){
+    .comedycontain{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 510px){
+    .comedycontain{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 300px){
+    .comedycontain{
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 900px){
+    .comedytitle{
+        margin-top: 6rem;
+    }
+}
+
+@media (max-width: 730px){
+    .comedytitle{
+        margin-top: 5rem;
+    }
+}
+
+@media (max-width: 500px){
+    .comedytitle{
+        margin-top: 4.5rem;
+    }
+}

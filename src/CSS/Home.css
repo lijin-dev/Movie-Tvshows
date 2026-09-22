@@ -2,10 +2,13 @@
     font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
     letter-spacing: 1px;
+    margin: 0;
+    padding: 0;
 }
 
 body{
     margin: 0;
+    padding: 0;
     background: radial-gradient(
     ellipse at top center,
     #0D1B2E 0%,
@@ -14,35 +17,51 @@ body{
      );
 }
 
-
+#root{
+    margin: 0;
+    padding: 0;
+}
 
 .contain{
-    border: 1px solid black;
-    margin: 0;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: bold;
-    background: radial-gradient(
-    ellipse at top center,
-    #0D1B2E 0%,
-    #0A0F1A 50%,
-    #07090D 100%
-     );
-    color: white;
-    position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 
-.netflix-text{
-    position: absolute;
-    left: 10px;
+.home-contain{
+    padding: 0 !important;
 }
 
 .menu{
+  width: 100%;
+  height: fit-content;
+    position: relative;
+  background: radial-gradient(
+    ellipse at top center,
+    #0D1B2E 0%,
+    #0A0F1A 50%,
+    #07090D 100%
+     );
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.netflix-text {
+    width: fit-content;
+    padding: 15px;
     display: flex;
-    gap: 30px;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  font-family: 'NetflixFont', sans-serif;
+  color: #E50914; /* Netflix Red */
+  letter-spacing: 2px;
+  font-size: 2rem;
 }
 
 @font-face {
@@ -52,14 +71,155 @@ body{
   font-style: normal;
 }
 
-.netflix-text {
+#menu{
+    display: none;
+}
+
+.netflix-text label{
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  font-size: 24px;
+  width: 30px;
+  height: 30px;
+}
+
+.netflix-text label .close-icon{
+    display: none;
+}
+
+#menu:checked ~ .netflix-text label .bi-list{
+    display: none;
+}
+
+#menu:checked ~ .netflix-text label .close-icon {
+  display: inline-block;
+}
+
+.items {
+  width: fit-content;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item {
+  width: 100%;
+  padding: 10px 18px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 15px;
+  border-radius: 5mm;
+  cursor: pointer;
+  transition:  0.3s ease;
+  border: none;
+  outline: none;
+}
+
+.item:hover {
+  background: black;
+  transform: translateY(-3px);
+}
+
+@media screen and (max-width: 600px) {
+  .menu {
+    flex-direction: column;
+  }
+
+  .menu .netflix-text {
+    width: 100%;
+  }
+
+  .menu .netflix-text label {
     display: flex;
-    align-items: center;
-  font-family: 'NetflixFont', sans-serif;
-  color: #E50914; /* Netflix Red */
-  letter-spacing: 2px;
-  margin-right: auto;
-  font-size: 2rem;
+  }
+
+  .menu .items {
+    display: flex;
+    position: static;
+    width: 100%;
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: max-height 0.25s ease, opacity 0.2s ease, transform 0.25s ease,
+      visibility 0s linear 0.25s;
+  }
+
+  #menu:checked ~ .items {
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition: max-height 0.25s ease, opacity 0.2s ease, transform 0.25s ease;
+  }
+
+  .item{
+    width: 100%;
+    padding: 15px;
+    border-radius: 0;
+    border-top: 0.5mm solid rgb(52, 53, 71);
+  }
+}
+
+@media screen and (max-width: 500px) {
+    .home-contain .menu{
+        display: flex !important;
+    }
+    
+    .menu {
+    flex-direction: column;
+  }
+
+  .menu .netflix-text {
+    width: 100%;
+  }
+
+  .menu .netflix-text label {
+    display: flex;
+  }
+
+  .menu .items {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    pointer-events: none;
+    transition: max-height 0.25s ease, opacity 0.2s ease, transform 0.25s ease,
+      visibility 0s linear 0.25s;
+  }
+
+  #menu:checked ~ .items {
+    max-height: 500px;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition: max-height 0.25s ease, opacity 0.2s ease, transform 0.25s ease;
+  }
+
+  .item{
+    width: 100%;
+    padding: 15px;
+    border-radius: 0;
+    border-top: 0.5mm solid rgb(52, 53, 71);
+  }
 }
 
 .form{
@@ -97,6 +257,16 @@ input{
     display: block;
     cursor: pointer;
     border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.movie_card:hover .movie_poster{
+  transform: scale(1.08);
+}
+
+.movie_card:hover{
+    transform: translateY(-10px);
+
 }
 
 .movie_card{
@@ -104,6 +274,7 @@ input{
     overflow: hidden;
     aspect-ratio: 2 / 3;
     border-radius: 10px;
+    transition: transform 0.3s ease;
 }
 
 .movie_details{
@@ -112,7 +283,12 @@ input{
     bottom: 0;
     left: 0;
     padding: 2.5rem 0.75rem 0.75rem;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0.45) 18%,
+      transparent 42%
+    );
     color: white;
     text-align: center;
 }
@@ -145,8 +321,18 @@ input{
 .moviehead{
     margin: 1rem;
     font-size: 30px;
-    font-weight: bold;
     margin-top: clamp(3rem, 4vw, 2rem);
+    color: transparent;
+    background-image: linear-gradient(to right, #ffffff, #e0e6ed);
+    background-clip: text;
+    -webkit-background-clip: text;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700; /* Bold, but clean */
+    letter-spacing: -0.02em; /* Tighter for heavy headers */
+    /* OR */
+    letter-spacing: 0.05em; /* Slightly wider if you choose a lighter weight uppercase style */
+
+
 }
 
 @media (max-width: 1200px){
@@ -235,9 +421,32 @@ input{
 .four{
     font-size: 11.44px;
     cursor: pointer;
+  display: block;
+  transform: translateY(-3);
+  transition: color 0.2s ease, transform 0.2s ease;
+  /* Fix 1: Tells the browser to optimize for transforms */
+  will-change: transform;
+  
+  /* Fix 2: Forces hardware acceleration */
+  transform: translateZ(0); 
+  
+  /* Fix 3: Blurs the edges slightly during scale to prevent jitter */
+  backface-visibility: hidden;
 }
 
 .four:hover{
     color: #1C96F7;
-    transition: all 0.3s ease;
+  transform: translateY(-2px) translateX(3px);
+}
+
+.four:focus-visible{
+  outline: 2px solid #1C96F7;
+  outline-offset: 3px;
+}
+
+.hambutton{
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
 }

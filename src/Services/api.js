@@ -175,3 +175,269 @@ export const getLatestMovieTV = async (page = 1) =>{
 
     return [...movieMap, ...tvMap];
 }
+
+export const getDrama = async(page = 1) =>{
+    const[movieDramaResponse, tvDramaResponse] = await Promise.all([
+        fetch(`${BASE_URL}/discover/movie?api_key=${API_KEY}&with_genres=18&sort_by=popularity.desc&page=${page}`),
+        fetch(`${BASE_URL}/discover/tv?api_key=${API_KEY}&with_genres=18&sort_by=popularity.desc&page=${page}`)
+    ]);
+
+    const movieData = await movieDramaResponse.json();
+    const tvData = await tvDramaResponse.json();
+
+    const movieMap = movieData.results.map((data) =>({
+        ...data,
+        type:"movie"
+    }));
+
+    const tvMap = tvData.results.map((value) =>({
+        ...value,
+        type:"tv"
+    }));
+
+    return [...movieMap, ...tvMap];
+}
+
+
+export const getComedy = async(page = 1) =>{
+    const[movieResponse, tvResponse] = await Promise.all([
+        fetch(`${BASE_URL}/discover/movie?with_genres=35&sort_by=popularity.desc&api_key=${API_KEY}&page=${page}`),
+        fetch(`${BASE_URL}/discover/tv?with_genres=35&sort_by=popularity.desc&api_key=${API_KEY}&page=${page}`)
+    ]);
+
+    const movieData = await movieResponse.json();
+    const tvData = await tvResponse.json();
+
+    const movieMap = movieData.results.map((data) =>({
+        ...data,
+        type:"movie"
+    }));
+
+    const tvMap = tvData.results.map((value) =>({
+        ...value,
+        type:"tv"
+    }));
+
+    return[...movieMap, ...tvMap];
+}
+
+export const getDocumantery = async(page = 1) =>{
+    const[movieResponse, tvResponse] = await Promise.all([
+        fetch(`${BASE_URL}/discover/movie?with_genres=99&sort_by=popularity.desc&api_key=${API_KEY}&page=${page}`),
+        fetch(`${BASE_URL}/discover/tv?with_genres=99&sort_by=popularity.desc&api_key=${API_KEY}&page=${page}`)
+    ])
+
+    const movieData = await movieResponse.json();
+    const tvData = await tvResponse.json();
+
+    const movieMap = movieData.results.map((data) =>({
+        ...data,
+        type:"movie"
+    }));
+
+    const tvMap = tvData.results.map((value) =>({
+        ...value,
+        type:"tv"
+    }))
+
+    return [...movieMap, ...tvMap];
+}
+
+export const getThriller = async(page = 1) =>{
+    const[movieResponse, tvResponse] = await Promise.all([
+        fetch(`${BASE_URL}/discover/movie?with_genres=53&sort_by=popularity.desc&api_key=${API_KEY}&page=${page}`),
+        fetch(`${BASE_URL}/discover/tv?with_genres=53&sort_by=popularity.desc&api_key=${API_KEY}&page=${page}`)
+    ]);
+
+    const movieData = await movieResponse.json();
+    const tvData = await tvResponse.json();
+
+    const movieMap = movieData.results.map((data) =>({
+        ...data,
+        type:"movie"
+    }));
+
+    const tvMap = tvData.results.map((value) =>({
+        ...value,
+        type:"tv"
+    }))
+
+    return [...movieMap, ...tvMap];
+}
+
+export const getCrime = async(page = 1) =>{
+    const[movieResponse, tvResponse] = await Promise.all([
+        fetch(`${BASE_URL}/discover/movie?with_genres=80&sort_by=popularity.desc&api_key=${API_KEY}&page=${page}`),
+        fetch(`${BASE_URL}/discover/tv?with_genres=80&sort_by=popularity.desc&api_key=${API_KEY}&page=${page}`)
+    ]);
+
+    const movieData = await movieResponse.json();
+    const tvData = await tvResponse.json();
+
+    const movieMap = movieData.results.map((data) =>({
+        ...data,
+        type:"movie"
+    }));
+
+    const tvMap = tvData.results.map((value) =>({
+        ...value,
+        type:"tv"
+    }))
+
+    return[...movieMap, ...tvMap];
+}
+
+export const getHorror = async(page = 1) =>{
+    const [movieResponse, tvResponse] = await Promise.all([
+        fetch(`${BASE_URL}/discover/movie?with_genres=27&sort_by=popularity.desc&api_key=${API_KEY}&page=${page}`),
+        fetch(`${BASE_URL}/discover/tv?with_genres=27&sort_by=popularity.desc&api_key=${API_KEY}&page=${page}`)
+    ]);
+
+    const movieData = await movieResponse.json();
+    const tvData = await tvResponse.json();
+
+    const movieMap = movieData.results.map((data) =>({
+        ...data,
+        type:"movie"
+    }));
+
+    const tvMap = tvData.results.map((value) =>({
+        ...value,
+        type:"tv"
+    }));
+
+    return[...movieMap, ...tvMap];
+}
+
+export const getUs = async(page = 1) =>{
+    const[movieResponse, tvResponse] = await Promise.all([
+        fetch(`${BASE_URL}/discover/movie?with_origin_country=US&sort_by=popularity.desc&api_key=${API_KEY}&page=${page}`),
+        fetch(`${BASE_URL}/discover/tv?with_origin_country=US&sort_by=popularity.desc&api_key=${API_KEY}&page=${page}`)
+    ]);
+
+    const movieData = await movieResponse.json();
+    const tvData = await tvResponse.json();
+
+    const movieMap = movieData.results.map((data) =>({
+        ...data,
+        type:"movie"
+    }));
+
+    const tvMap = tvData.results.map((value) =>({
+        ...value,
+        type:"tv"
+    }))
+
+    return[...movieMap, ...tvMap];
+}
+
+export const getUk = async(page = 1) =>{
+    const[movieResponse, tvResponse] = await Promise.all([
+        fetch(`${BASE_URL}/discover/movie?with_origin_country=GB&sort_by=popularity.dec&api_key=${API_KEY}&page=${page}`),
+        fetch(`${BASE_URL}/discover/tv?with_origin_country=GB&sort_by=popularity.desc&api_key=${API_KEY}&page=${page}`)
+    ]);
+
+    const movieData = await movieResponse.json();
+    const tvData = await tvResponse.json();
+
+    const movieMap = movieData.results.map((data) =>({
+        ...data,
+        type:"movie"
+    }));
+
+    const tvMap = tvData.results.map((value) =>({
+        ...value,
+        type:"tv"
+    }));
+
+    return[...movieMap, ...tvMap];
+}
+
+export const getCanada = async(page = 1) =>{
+    const[movieResponse, tvResponse] = await Promise.all([
+        fetch(`${BASE_URL}/discover/movie?with_origin_country=CA&sort_by=popularity.desc&api_key=${API_KEY}&page=${page}`),
+        fetch(`${BASE_URL}/discover/tv?with_origin_country=CA&sort_by=popularity.desc&api_key=${API_KEY}&page=${page}`)
+    ]);
+
+    const movieData = await movieResponse.json();
+    const tvData = await tvResponse.json();
+
+    const movieMap = movieData.results.map((data) =>({
+        ...data,
+        type:"movie"
+    }));
+
+    const tvMap = tvData.results.map((value) =>({
+        ...value,
+        type:"tv"
+    }));
+
+    return[...movieMap, ...tvMap];
+}
+
+export const getFrance = async(page = 1) =>{
+    const[movieResponse, tvResponse] = await Promise.all([
+        fetch(`${BASE_URL}/discover/movie?with_origin_country=FR&sort_by=popularity.desc&api_key=${API_KEY}&page=${page}`),
+        fetch(`${BASE_URL}/discover/tv?with_origin_country=FR&sort_by=popularity.desc&api_key=${API_KEY}&page=${page}`)
+    ]);
+
+    const movieData = await movieResponse.json();
+    const tvData = await tvResponse.json();
+
+    const movieMap = movieData.results.map((data) =>({
+        ...data,
+        type:"movie"
+    }));
+
+    const tvMap = tvData.results.map((value) =>({
+        ...value,
+        type:"tv"
+    }));
+
+    return[...movieMap, ...tvMap];
+}
+
+export const getJapan = async(page = 1) =>{
+    const[movieResponse, tvResponse] = await Promise.all([  
+        fetch(`${BASE_URL}/discover/movie?with_origin_country=JP&sort_by=popularity.desc&api_key=${API_KEY}&page=${page}`),
+        fetch(`${BASE_URL}/discover/tv?with_origin_country=JP&sort_by=popularity.desc&api_key=${API_KEY}&page=${page}`)
+    ])
+
+    const movieData = await movieResponse.json();
+    const tvData = await tvResponse.json();
+
+    const movieMap = movieData.results.map((data) =>({
+        ...data,
+        type:"movie"
+    }));
+
+    const tvMap = tvData.results.map((value) =>({
+        ...value,
+        type:"tv"
+    }));
+
+    return[...movieMap, ...tvMap];
+}
+
+export const getGermany = async(page = 1) =>{
+    const[movieResponse, tvResponse] = await Promise.all([
+        fetch(`${BASE_URL}/discover/movie?with_origin_country=DE&sort_by=popularity.desc&api_key=${API_KEY}&page=${page}`),
+        fetch(`${BASE_URL}/discover/tv?with_origin_country=DE&sort_by=popularity.desc&api_key=${API_KEY}&page=${page}`)
+    ]);
+
+
+    const movieData = await movieResponse.json();
+    const tvData = await tvResponse.json();
+
+    const movieMap = movieData.results.map((data) =>({
+        ...data,
+        type:"movie"
+    }));
+
+    const tvMap = tvData.results.map((value) =>({
+        ...value,
+        type:"tv"
+    }));
+
+    return[...movieMap, ...tvMap];
+}

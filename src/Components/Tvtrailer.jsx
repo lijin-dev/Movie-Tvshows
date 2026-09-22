@@ -88,21 +88,22 @@ function Tvtrailer(){
 
     return(
         <>
-        <div className="contain">
+        <div className="contain home-contain">
+            <div className="menu">
+                <input type="checkbox" id="menu" />
             <div className="netflix-text">
                 Lijinflix
+                <label htmlFor="menu" aria-label="Toggle menu">
+                    <i className="bi bi-list"></i>
+                    <i className="bi bi-x-lg close-icon"></i>
+                </label>
             </div>
-            <div className="menu">
-                <Link style={{textDecoration:"none", color:"white"}} to='/'>
-                    <p style={{cursor:"pointer"}}>Home</p>
-                </Link>
-                <Link style={{textDecoration:"none", color:"white"}} to='/'>
-                    <p  style={{cursor:"pointer"}}>Movies</p>
-                </Link>
-                <Link style={{textDecoration:"none", color:"white"}} to="/tvseries/">
-                    <p style={{cursor:"pointer"}}>Tv-Series</p>
-                </Link>
+            <div className="items">
+                <p className="item" onClick={() =>navigate("/")}>Home</p>
+                <p className="item" onClick={() =>navigate("/")}>Movies</p>
+                <p className="item" onClick={() =>navigate("/tvseries")}>Tv-Series</p>
             </div>
+          </div>
         </div>
         <div className="tvtrailercontainer">
         <div className="tvtrailercontain">
@@ -152,7 +153,7 @@ function Tvtrailer(){
                 </div>
                 ))}
             </div>
-            <div className="about">
+           <div className="about">
             <h1 className="head1">
                 Watch Free Movies & TV Shows Online in HD
             </h1>
@@ -173,21 +174,45 @@ function Tvtrailer(){
             </div>
             <div >
                 <h2 className="three" style={{fontWeight:"bold", color:""}}>GENRES</h2>
+                <Link  style={{color:"white", textDecoration:"none"}} to='/drama'>
                 <p className="four">Drama</p>
+                </Link>
+                <Link  style={{color:"white", textDecoration:"none"}} to='/comedy'>
                 <p className="four">Comedy</p>
+                </Link>
+                <Link  style={{color:"white", textDecoration:"none"}} to='/documentary'>
                 <p className="four">Documentary</p>
+                </Link>
+                <Link  style={{color:"white", textDecoration:"none"}} to='/thriller'>
                 <p className="four">Thriller</p>
+                </Link>
+                <Link style={{color:"white", textDecoration:"none"}} to='/crime'>
                 <p className="four">Crime</p>
+                </Link>
+                <Link style={{color:"white", textDecoration:"none"}} to='/horror'>
                 <p className="four">Horror</p>
+                </Link>
             </div>
             <div>
                 <h2 className="three">COUNTRY</h2>
+                <Link style={{color:"white", textDecoration:"none"}} to='/unitedstate'>
                 <p className="four">United State of America</p>
+                </Link>
+                <Link style={{color:"white", textDecoration:"none"}} to='/unitedkingdom'>
                 <p className="four">United Kingdom</p>
+                </Link>
+                <Link style={{color:"white", textDecoration:"none"}} to='/canada'>
                 <p className="four">Canada</p>
+                </Link>
+                <Link style={{color:"white", textDecoration:"none"}} to='/france'>
                 <p className="four">France</p>
+                </Link>
+                <Link style={{color:"white", textDecoration:"none"}} to='/japan'>
                 <p className="four">Japan</p>
+                </Link>
+                <Link style={{color:"white", textDecoration:"none"}} to='/germany'>
                 <p className="four">Germany</p>
+                </Link>
             </div>
             <div>
                 <h1 className="three">WATCH FREE</h1>

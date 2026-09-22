@@ -1,0 +1,115 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+.documentcontain{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    margin: 1rem;
+    gap: 10px;
+}
+
+.documentcard{
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.documentposter{
+    width: 100%;
+    display: block;
+    cursor: pointer;
+    color: white;
+    transition: transform 0.3s ease;
+}
+
+.documentcard:hover .documentposter{
+    transform: scale(1.08);
+}
+
+.documentcard:hover{
+    transform: translateY(-10px);
+}
+
+.documentinfo{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 2rem 0.5rem 0.5rem;
+    color: white;
+    text-align: center;
+    background: linear-gradient(to bottom, transparent, black 45%);
+    opacity: 0.9;
+}
+
+.documentinfo p{
+    margin: 0.15rem 0;
+    overflow: hidden;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.documenttitle{
+    margin-left: 1rem;
+    margin-top: 6rem;
+    color: white;
+}
+
+@media (max-width: 1100px){
+    .documentcontain{
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media (max-width: 1100px){
+    .documentcontain{
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media (max-width: 850px){
+    .documentcontain{
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (max-width: 680px){
+    .documentcontain{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 502px){
+    .documentcontain{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 280px){
+    .documentcontain{
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 900px){
+    .documenttitle{
+        margin-top: 6rem;
+    }
+}
+
+@media (max-width: 730px){
+    .documenttitle{
+        margin-top: 5rem;
+    }
+}
+
+@media (max-width: 500px){
+    .documenttitle{
+        margin-top: 4.5rem;
+    }
+}

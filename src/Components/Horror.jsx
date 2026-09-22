@@ -1,97 +1,48 @@
-import { useEffect, useState } from "react"
-import { getMovieActors, getMovieById, getMovieTrailer, getSimilarMovies, getTvCast } from "../Services/api";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import "../CSS/Trailer.css"
+import { useEffect, useState } from "react";
+import { data, Link, useNavigate } from "react-router-dom";
+import { getHorror } from "../Services/api";
+import '../CSS/Horror.css'
 
-function Trailer(){
+function Horror(){
 
-    const[trailer, setTrailer] = useState(null);
+    const[horror, setHorror] = useState([]);
+    const[page, setPage] = useState(() => {
+        const savedPage = Number(localStorage.getItem("horrorPage"));
+        return savedPage > 0 ? savedPage : 1;
+    });
     const[loading, setLoading] = useState(true);
-    const[movie, setMovie] = useState(null);
-    const[actors, setActors] = useState(null);
-    const[similar, setSimilar] = useState([]);
     const navigate = useNavigate();
-    const {idmt} =useParams()
+
+    useEffect(() => {
+        localStorage.setItem("horrorPage", String(page));
+    }, [page]);
 
 
-    
-
-    const appfour = async () =>{
+    const app = async() =>{
         try{
-            const getSimilar = await getSimilarMovies(idmt);
-            setSimilar(getSimilar);
+            setLoading(true)    
+            const getHorr = await getHorror(page);
+            setHorror(getHorr);
         }catch(err){
-            console.log(err);
+            console.log("an error Occured", err);
             
         }finally{
-            setLoading(false);
+            setLoading(false)
         }
-    }
-
-    useEffect(() =>{
-        appfour();
-    }, [idmt])
-
-    const appthree = async () =>{
-        try{
-            const getCast = await getMovieActors(idmt);
-            setActors(getCast)
-        }catch(err){
-            console.log(err);
-            
-        }finally{
-            setLoading(false);
-        }
-    }
-
-    useEffect(() =>{
-        appthree();
-    }, [idmt])
-
-    const apptwo = async () =>{
-        try{
-            const getMovie = await getMovieById(idmt);
-            setMovie(getMovie);
-        }catch(err){
-            console.log(err);
-        }
-    }
-
-    useEffect(() =>{
-        apptwo();
-    }, [idmt])
-
-    const app = async () =>{
-
-        setLoading(true);
-
-        try{
-            const trailers = await getMovieTrailer(idmt);
-            const youtubeTrailer = trailers.find(
-                (video) => video.site === "YouTube" && video.type === "Trailer"
-            );
-            setTrailer(youtubeTrailer || null);
-        }catch(err){
-            console.log(err);
-        }finally{
-            setLoading(false);
-        }
+        
     }
 
     useEffect(() =>{
         app();
-    }, [idmt])
+    }, [page]);
 
-    if (loading) {
-        return <div style={{ color: "white", padding: "2rem" }}>Loading trailer...</div>;
+    const handleClick = (data) =>{
+        if(data.type === "movie"){
+            navigate(`/moviedetails/${data.id}`)
+        }else{
+            navigate(`/tvdetails/${data.id}`)
+        }
     }
-
-    if (!movie) {
-        return <div style={{ color: "white", padding: "2rem" }}>Movie details not found.</div>;
-    }
-
-    const hasTrailer = Boolean(trailer && trailer.key);
-    const castNames = actors?.slice(0, 3).map((data) => data.name).join(", ") || "N/A";
 
     return(
         <>
@@ -112,53 +63,32 @@ function Trailer(){
             </div>
           </div>
         </div>
-        <div className="movietrailercontain">
-            <div className="iframecontain">
-                {hasTrailer ? (
-                    <iframe className="movietrailer"
-                        src={`https://www.youtube.com/embed/${trailer.key}`}
-                        title="Movie Trailer"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    ></iframe>
-                ) : (
-                    <div className="movietrailer" style={{ display: "flex", alignItems: "center", justifyContent: "center", background: "#111", color: "white" }}>
-                        Trailer unavailable
-                    </div>
-                )}
-            </div>
-                <div className="trailerposterdetails">
-                    <div>
-                <img className="trailerposter" src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="" />
-                    </div>
-                <div className="moviedetails">
-                    <h1 style={{color:"white", fontWeight:"bold"}}>{movie.title}</h1>
-                    <div className="imdb">
-                    <p style={{color:"black"}}> IMDB :{movie.vote_average.toFixed(1)}</p>
-                    </div>
-                    <p style={{color:"grey"}}>{movie.overview || "No overview available."}</p>
-                    <p style={{marginTop:"1rem"}}> Country: {movie.production_countries?.map((country) => country.name).join(", ") || "N/A"}</p>
-                    <p>Genres: {movie.genres.slice(0, 1).map((genre) => genre.name)}</p>
-                    <p>Released: {movie.release_date}</p>
-                    <p>Productions: {movie.production_companies.map((companies) => companies.name).join(", ")}</p>
-                    <p>Cast: {castNames}</p>
+         <div className="horrortitle">
+            <h1>Horror Movies & TV Shows Online Free</h1>
+            <p style={{color:"gray"}}>Stream the best Horror movies and TV shows free on Nunflix in HD. Browse 1,201 Horror titles — no signup, no subscription required. Updated daily with the newest Horror releases.</p>
+         </div>
+         <div className="horrorcontain">
+            {horror.map((data) =>(
+            <div key={`${data.type}-${data.id}`} className="horror-card" onClick={() => handleClick(data)}>
+                <img className="horrorposter" src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} alt={data.name || data.title} />
+                <div className="horror-overlay">
+                    {data.name && <p>{data.name}</p>}
+                    {data.title && <p>{data.title}</p>}
+                    {data.release_date && <p>{data.release_date}</p>}
+                    {data.first_air_date && <p>{data.first_air_date}</p>}
                 </div>
-                </div>
-        </div>
-        
-            <h2 className="alike">You may also like</h2>
-        <div className="simicontain">
-        {similar.map((simi) =>(
-        <div style={{cursor:"pointer"}} key={simi.id} className="simiposterwrap" onClick={() => navigate(`/moviedetails/${simi.id}`)}>
-            <img onClick={() => navigate(`/moviedetails/${simi.id}`)} className="simiposter" src={`https://image.tmdb.org/t/p/w500${simi.poster_path}`} alt="" />
-            <div className="simiposteroverlay">
-                <h4>{simi.title}</h4>
-                <p>{simi.release_date}</p>
             </div>
-        </div>
-        ))}
-        </div>
-        <div className="about">
+            ))}
+         </div>
+         <div className="imdbbtn">
+            <div>
+                <button className="btnratingone" onClick={() =>setPage(page - 1)}>Previous</button>
+            </div>
+            <div>
+                <button className="btnratingtwo" onClick={() =>setPage(page + 1)}>Next</button>
+            </div>
+         </div>
+         <div className="about">
             <h1 className="head1">
                 Watch Free Movies & TV Shows Online in HD
             </h1>
@@ -248,4 +178,4 @@ function Trailer(){
     )
 }
 
-export default Trailer
+export default Horror

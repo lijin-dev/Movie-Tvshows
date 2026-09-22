@@ -65,8 +65,7 @@ function Tvseries() {
     }
 
     const selectSuggestion = (item) => {
-        const selectedTitle = item.name || item.title;
-        setQuery(selectedTitle);
+        setQuery("");
         setSuggestions([]);
         setTvseries([item]);
         setIsSearching(true);
@@ -99,21 +98,22 @@ function Tvseries() {
 
   return (
     <>
-    <div className="contain">
+       <div className="contain home-contain">
+            <div className="menu">
+                <input type="checkbox" id="menu" />
             <div className="netflix-text">
                 Lijinflix
+                <label htmlFor="menu" aria-label="Toggle menu">
+                    <i className="bi bi-list"></i>
+                    <i className="bi bi-x-lg close-icon"></i>
+                </label>
             </div>
-            <div className="menu">
-                <Link style={{textDecoration:"none", color:"white"}} to='/'>
-                    <p style={{cursor:"pointer"}}>Home</p>
-                </Link>
-                <Link style={{textDecoration:"none", color:"white"}} to='/'>
-                    <p  style={{cursor:"pointer"}}>Movies</p>
-                </Link>
-                <Link style={{textDecoration:"none", color:"white"}} to="/tvseries/">
-                    <p style={{cursor:"pointer"}}>Tv-Series</p>
-                </Link>
+            <div className="items">
+                <p className="item" onClick={() =>navigate("/")}>Home</p>
+                <p className="item" onClick={() =>navigate("/")}>Movies</p>
+                <p className="item">Tv-Series</p>
             </div>
+          </div>
         </div>
         <div style={{ position: "relative", width: "min(550px, 90vw)", margin: "0 auto" }}>
             <div
@@ -131,8 +131,8 @@ function Tvseries() {
                 onClick={() => setSuggestions([])}
             />
             <form className="form" onSubmit={appto} style={{ width: "100%", position: "relative", zIndex: 10 }}>
-                <input className="name" type="text" name="name" value={query} onChange={(e) => setQuery(e.target.value)} style={{ width: "100%" }}/>
-                <input className="submit" type="submit" />
+                <input className="name" type="text" name="name" value={query} onChange={(e) => setQuery(e.target.value)} style={{ width: "100%" }} placeholder="Search any tv shows"/>
+                <input className="submit" type="submit" value="Search" />
             </form>
             {query.trim() && suggestions.length > 0 && (
                 <div className="tv-search-dropdown" style={{transition:"all 0.3s ease", position: "absolute", top: "52px", left: "50%", transform: "translateX(-50%)", width: "100%", maxWidth: "450px", background: "#171c22", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "10px", zIndex: 10, overflowY: "auto", maxHeight: "420px", boxShadow: "0 8px 20px rgba(0,0,0,0.35)", scrollbarWidth: "thin", scrollbarColor: "#ff4d88 #2a2d31" }}>
@@ -195,21 +195,45 @@ function Tvseries() {
             </div>
             <div >
                 <h2 className="three" style={{fontWeight:"bold", color:""}}>GENRES</h2>
+                <Link  style={{color:"white", textDecoration:"none"}} to='/drama'>
                 <p className="four">Drama</p>
+                </Link>
+                <Link  style={{color:"white", textDecoration:"none"}} to='/comedy'>
                 <p className="four">Comedy</p>
+                </Link>
+                <Link  style={{color:"white", textDecoration:"none"}} to='/documentary'>
                 <p className="four">Documentary</p>
+                </Link>
+                <Link  style={{color:"white", textDecoration:"none"}} to='/thriller'>
                 <p className="four">Thriller</p>
+                </Link>
+                <Link style={{color:"white", textDecoration:"none"}} to='/crime'>
                 <p className="four">Crime</p>
+                </Link>
+                <Link style={{color:"white", textDecoration:"none"}} to='/horror'>
                 <p className="four">Horror</p>
+                </Link>
             </div>
             <div>
                 <h2 className="three">COUNTRY</h2>
+                <Link style={{color:"white", textDecoration:"none"}} to='/unitedstate'>
                 <p className="four">United State of America</p>
+                </Link>
+                <Link style={{color:"white", textDecoration:"none"}} to='/unitedkingdom'>
                 <p className="four">United Kingdom</p>
+                </Link>
+                <Link style={{color:"white", textDecoration:"none"}} to='/canada'>
                 <p className="four">Canada</p>
+                </Link>
+                <Link style={{color:"white", textDecoration:"none"}} to='/france'>
                 <p className="four">France</p>
+                </Link>
+                <Link style={{color:"white", textDecoration:"none"}} to='/japan'>
                 <p className="four">Japan</p>
+                </Link>
+                <Link style={{color:"white", textDecoration:"none"}} to='/germany'>
                 <p className="four">Germany</p>
+                </Link>
             </div>
             <div>
                 <h1 className="three">WATCH FREE</h1>

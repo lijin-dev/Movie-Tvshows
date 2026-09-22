@@ -40,6 +40,7 @@
     overflow: hidden;
     border-radius: 10px;
     cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
 .latestposter{
@@ -47,6 +48,15 @@
     display: block;
     aspect-ratio: 2 / 3;
     object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.latestcard:hover .latestposter{
+    transform: scale(1.08);
+}
+
+.latestcard:hover{
+    transform: translateY(-10px);
 }
 
 .latestoverlay{
@@ -69,7 +79,25 @@
 }
 
 .latesttitle{
-    margin-top: 4rem;
+    margin-top: 6rem;
     margin-left: 1rem;
     color: white;
+}
+
+@media (max-width: 900px){
+    .latesttitle{
+        margin-top: 6rem;
+    }
+}
+
+@media (max-width: 730px){
+    .latesttitle{
+        margin-top: 5rem;
+    }
+}
+
+@media (max-width: 500px){
+    .latesttitle{
+        margin-top: 4.5rem;
+    }
 }

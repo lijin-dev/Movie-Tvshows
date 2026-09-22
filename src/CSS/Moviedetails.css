@@ -107,6 +107,20 @@
     background-color: #3C7FC7;
     color: white;
     cursor: pointer;
+    transition: transform 0.3s ease;
+    /* Fix 1: Tells the browser to optimize for transforms */
+  will-change: transform;
+  
+  /* Fix 2: Forces hardware acceleration */
+  transform: translateZ(0); 
+  
+  /* Fix 3: Blurs the edges slightly during scale to prevent jitter */
+  backface-visibility: hidden;
+}
+
+.moviebutton:hover{
+    transform: scale(1.08);
+    box-shadow: 1px 2px 10px #3C7FC7;
 }
 
 .buttoncontainer{
@@ -156,6 +170,7 @@
     overflow: hidden;
     aspect-ratio: 2 / 3;
     border-radius: 10px;
+    transition: transform 0.3s ease;
 }
 
 .similarmovies{
@@ -164,6 +179,15 @@
     object-fit: cover;
     border-radius: 10px;
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.similar_movie_card:hover .similarmovies{
+    transform: scale(1.08);
+}
+
+.similar_movie_card:hover{
+    transform: translateY(-10px);
 }
 
 .similar_movie_details{

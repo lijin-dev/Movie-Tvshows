@@ -1,0 +1,129 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+.canadacontain{
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 10px;
+    margin: 1rem;
+}
+
+.canadacard{
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 2 / 3;
+    border-radius: 10px;
+    background: #000;
+    transition: transform 0.3s ease;
+
+}
+
+.canadaposter{
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.canadacard:hover .canadaposter{
+    transform: scale(1.08);
+}
+
+.canadacard:hover{
+    transform: translateY(-10px);
+}
+
+.canadadetails{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 3.5rem 0.5rem 0.6rem;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.95));
+    color: white;
+    text-align: center;
+    pointer-events: none;
+}
+
+.canadadetails p{
+    margin: 0.2rem 0 0;
+    font-size: 0.72rem;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+.canadadetails p:first-child{
+    margin-top: 0;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.canadadetails p:nth-child(n + 2){
+    color: #d1d1d1;
+}
+
+.canadatitle{
+    margin-left: 1rem;
+    margin-top: 6rem;
+    color: white;
+}
+
+@media (max-width: 1150px){
+    .canadacontain{
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media (max-width: 850px){
+    .canadacontain{
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (max-width: 650px){
+    .canadacontain{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 500px){
+    .canadacontain{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 430px){
+    .canadacontain{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 275px){
+    .canadacontain{
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 900px){
+    .canadatitle{
+        margin-top: 6rem;
+    }
+}
+
+@media (max-width: 730px){
+    .canadatitle{
+        margin-top: 5rem;
+    }
+}
+
+@media (max-width: 500px){
+    .canadatitle{
+        margin-top: 4.5rem;
+    }
+}
